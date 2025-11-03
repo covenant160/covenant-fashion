@@ -1,9 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function ContactSection() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [visible, setVisible] = useState(false); // For fade-in animation
+
+  // Detect when section is in viewport
+  useEffect(() => {
+    const section = document.getElementById("contact");
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (section) observer.observe(section);
+    return () => {
+      if (section) observer.unobserve(section);
+    };
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -14,7 +28,7 @@ export default function ContactSection() {
     try {
       const response = await fetch("https://formspree.io/f/xrbabvgn", {
         method: "POST",
-        headers: { "Accept": "application/json" },
+        headers: { Accept: "application/json" },
         body: formData,
       });
 
@@ -22,7 +36,6 @@ export default function ContactSection() {
         setSuccess(true);
         form.reset();
       } else {
-        // handle error
         alert("Sorry — there was a problem submitting the form.");
       }
     } catch (error) {
@@ -39,10 +52,10 @@ export default function ContactSection() {
       className="relative py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden"
     >
       {/* Floating gradient circles */}
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-purple-500 via-pink-400 to-yellow-400 rounded-full opacity-30 blur-3xl animate-float-slow pointer-events-none"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-pink-500 via-purple-400 to-blue-400 rounded-full opacity-25 blur-3xl animate-float-slow-slow pointer-events-none"></div>
+      <div className="absolute top-0 left-1/4 w-72 h-72 sm:w-48 sm:h-48 bg-gradient-to-r from-purple-500 via-pink-400 to-yellow-400 rounded-full opacity-30 blur-3xl animate-float-slow pointer-events-none"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 sm:w-64 sm:h-64 bg-gradient-to-r from-pink-500 via-purple-400 to-blue-400 rounded-full opacity-25 blur-3xl animate-float-slow-slow pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className={`container mx-auto px-6 relative z-10 transition-all duration-1000 ease-in-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
         <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-16">
           Get in Touch
         </h2>
@@ -69,7 +82,7 @@ export default function ContactSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-300 to-yellow-300 opacity-10 pointer-events-none rounded-3xl"></div>
 
             {success ? (
-              <div className="relative z-10 text-center p-10">
+              <div className="relative z-10 text-center p-10 max-w-md mx-auto">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   Thank you!
                 </h3>
@@ -102,7 +115,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300"
+                  className="w-full sm:py-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300"
                 >
                   {submitting ? "Sending…" : "Send Message"}
                 </button>

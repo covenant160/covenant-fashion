@@ -2,9 +2,9 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Contact() {
   return (
-    <main className="min-h-screen bg-white dark:bg-zinc-900 py-20 px-6">
+    <main className="min-h-screen bg-white dark:bg-zinc-900 py-20 px-4 sm:px-6 lg:px-6">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-12">
           Contact Us
         </h1>
 
@@ -18,17 +18,23 @@ export default function Contact() {
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-purple-600 transition-colors">
                 <Mail className="w-5 h-5 text-black dark:text-white" />
-                <span className="text-gray-800 dark:text-gray-300">info@covenantfashion.com</span>
+                <span className="text-gray-800 dark:text-gray-300">
+                  info@covenantfashion.com
+                </span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-purple-600 transition-colors">
                 <Phone className="w-5 h-5 text-black dark:text-white" />
-                <span className="text-gray-800 dark:text-gray-300">+263 71 234 5678</span>
+                <span className="text-gray-800 dark:text-gray-300">
+                  +263 71 234 5678
+                </span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 hover:text-purple-600 transition-colors">
                 <MapPin className="w-5 h-5 text-black dark:text-white" />
-                <span className="text-gray-800 dark:text-gray-300">Harare, Zimbabwe</span>
+                <span className="text-gray-800 dark:text-gray-300">
+                  Harare, Zimbabwe
+                </span>
               </div>
             </div>
           </div>
@@ -41,7 +47,8 @@ export default function Contact() {
               </label>
               <input
                 type="text"
-                className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 px-4 py-2 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-zinc-600"
+                autoComplete="name"
+                className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 px-4 py-3 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-zinc-600"
                 required
               />
             </div>
@@ -52,7 +59,8 @@ export default function Contact() {
               </label>
               <input
                 type="email"
-                className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 px-4 py-2 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-zinc-600"
+                autoComplete="email"
+                className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 px-4 py-3 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-zinc-600"
                 required
               />
             </div>
@@ -62,7 +70,7 @@ export default function Contact() {
                 Message
               </label>
               <textarea
-                className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 px-4 py-2 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-zinc-600"
+                className="w-full rounded-lg border border-gray-300 dark:border-zinc-700 px-4 py-3 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-zinc-600"
                 rows={5}
                 required
               ></textarea>

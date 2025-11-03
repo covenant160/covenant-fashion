@@ -34,7 +34,7 @@ export default function ShopSection() {
     >
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.2),transparent_70%)] pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-4xl font-extrabold text-center text-gray-900 dark:text-white mb-14 tracking-wide uppercase">
           <span className="bg-linear-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
             Shop the Latest
@@ -42,7 +42,7 @@ export default function ShopSection() {
         </h2>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
           {products.map((item, index) => (
             <div
               key={index}
@@ -54,18 +54,18 @@ export default function ShopSection() {
                   alt={item.title}
                   width={500}
                   height={500}
-                  className="w-full h-80 object-cover rounded-t-3xl transform group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-64 sm:h-72 md:h-80 lg:h-80 object-cover rounded-t-3xl transform group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
 
-              <div className="p-6 text-center">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <div className="p-4 sm:p-6 text-center">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 truncate">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-3">{item.price}</p>
                 <button
                   onClick={() => handleAddToCart(item)}
-                  className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300"
+                  className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300"
                 >
                   Add to Cart
                 </button>
@@ -75,7 +75,7 @@ export default function ShopSection() {
                 onClick={() => setSelectedProduct(item)}
                 className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center cursor-pointer"
               >
-                <p className="text-white text-sm uppercase tracking-widest">
+                <p className="text-white text-sm sm:text-base uppercase tracking-widest">
                   View Details
                 </p>
               </div>
@@ -87,11 +87,11 @@ export default function ShopSection() {
       {/* Product Details Modal */}
       {selectedProduct && (
         <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4 sm:px-6"
           onClick={() => setSelectedProduct(null)}
         >
           <div
-            className="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-2xl max-w-md w-full text-center relative"
+            className="bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl shadow-2xl max-w-sm sm:max-w-md w-full text-center relative"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
@@ -99,18 +99,18 @@ export default function ShopSection() {
               alt={selectedProduct.title}
               width={400}
               height={400}
-              className="rounded-2xl mb-6 mx-auto"
+              className="rounded-2xl mb-4 sm:mb-6 mx-auto"
             />
-            <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white">
               {selectedProduct.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">{selectedProduct.price}</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">{selectedProduct.price}</p>
             <button
               onClick={() => {
                 handleAddToCart(selectedProduct);
                 setSelectedProduct(null);
               }}
-              className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full shadow-md hover:scale-105 transition-all duration-300"
+              className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-2 rounded-full shadow-md hover:scale-105 transition-all duration-300"
             >
               Add to Cart
             </button>

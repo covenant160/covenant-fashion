@@ -16,13 +16,11 @@ export default function ShopPage() {
   const [showModal, setShowModal] = useState(false);
   const [addedItem, setAddedItem] = useState<string>("");
 
-  // Load cart from localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) setCart(JSON.parse(savedCart));
   }, []);
 
-  // Save cart to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -35,14 +33,14 @@ export default function ShopPage() {
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20 px-6 relative">
-      <div className="container mx-auto">
-        <h1 className="text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-12">
+    <section className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20 px-4 sm:px-6 lg:px-12 relative">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-12">
           Our Collection
         </h1>
 
         {/* Product grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
           {products.map((item) => (
             <div
               key={item.id}
@@ -53,16 +51,16 @@ export default function ShopPage() {
                 alt={item.name}
                 width={400}
                 height={400}
-                className="w-full h-80 object-cover"
+                className="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-cover"
               />
               <div className="p-6 text-center">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   {item.name}
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">{item.price}</p>
                 <button
                   onClick={() => handleAddToCart(item)}
-                  className="bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 text-white px-5 sm:px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
                 >
                   Add to Cart
                 </button>
@@ -72,20 +70,20 @@ export default function ShopPage() {
         </div>
 
         {/* Back to Home */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 sm:mt-16">
           <Link href="/">
-            <button className="px-8 py-3 text-white font-bold text-lg rounded-full bg-gradient-to-r from-yellow-400 via-green-400 to-blue-500 hover:from-purple-600 hover:via-pink-500 hover:to-yellow-400 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:scale-105">
+            <button className="px-6 sm:px-8 py-3 text-white font-bold text-lg rounded-full bg-gradient-to-r from-yellow-400 via-green-400 to-blue-500 hover:from-purple-600 hover:via-pink-500 hover:to-yellow-400 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:scale-105">
               Back to Home
             </button>
           </Link>
         </div>
       </div>
 
-      {/* ✅ Add-to-cart Modal */}
+      {/* Add-to-cart Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl text-center transform scale-105 transition-all">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">✅ Added to Cart</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl text-center transform scale-105 transition-all">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">✅ Added to Cart</h2>
             <p className="text-gray-700 dark:text-gray-300">{addedItem} has been added to your cart.</p>
           </div>
         </div>

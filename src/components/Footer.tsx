@@ -11,11 +11,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-linear-to-r from-purple-700 via-pink-500 to-red-500 text-white py-16 mt-16 relative overflow-hidden">
+    <footer className="relative overflow-hidden py-16 mt-16 bg-gradient-to-r from-purple-700 via-pink-500 to-red-500 text-white">
       {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-linear-to-br from-purple-600 via-pink-400 to-yellow-400 opacity-20 animate-gradient-slow pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-400 to-yellow-400 opacity-20 animate-gradient-slow pointer-events-none z-0"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold mb-4 drop-shadow-lg">
           Covenant Fashion
         </h2>
@@ -24,12 +24,12 @@ export default function Footer() {
         </p>
 
         {/* Footer links */}
-        <div className="flex justify-center space-x-8 mb-6 text-lg font-semibold">
+        <div className="flex flex-wrap justify-center gap-6 mb-6 text-lg font-semibold">
           {["Home", "Lookbook", "Shop", "News", "Contact"].map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="bg-clip-text text-transparent bg-linear-to-r from-purple-300 via-pink-200 to-yellow-200 hover:from-yellow-200 hover:via-green-200 hover:to-blue-200 transition-all duration-500"
+              className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-200 to-yellow-200 hover:from-yellow-200 hover:via-green-200 hover:to-blue-200 transition-all duration-500"
             >
               {link}
             </a>
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
 
         {/* Social icons */}
-        <div className="flex justify-center space-x-6 mb-6 text-xl">
+        <div className="flex justify-center gap-6 mb-6 text-xl">
           {socialLinks.map(({ icon: Icon, href, label }, i) => (
             <a
               key={i}
@@ -45,7 +45,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-white hover:text-transparent bg-clip-text bg-linear-to-r from-yellow-200 via-green-200 to-blue-200 transition-all duration-500 hover:scale-125 transform"
+              className="text-white hover:text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-green-200 to-blue-200 transition-all duration-500 hover:scale-125 transform"
             >
               <Icon />
             </a>

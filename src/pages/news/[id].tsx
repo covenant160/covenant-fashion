@@ -81,23 +81,23 @@ export default function ArticlePage() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-20">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <Link href="/">
         <button className="mb-6 bg-gray-200 dark:bg-gray-800 px-4 py-2 rounded hover:bg-gray-300 dark:hover:bg-gray-700">
           ← Back
         </button>
       </Link>
 
-      <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
-      <p className="text-sm text-gray-500 mb-6">{article.date}</p>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{article.title}</h1>
+      <p className="text-sm sm:text-base text-gray-500 mb-6">{article.date}</p>
 
       {/* Hero Image */}
-      <div className="relative w-full h-96 mb-8 rounded overflow-hidden shadow-lg">
+      <div className="relative w-full h-64 sm:h-80 md:h-96 mb-8 rounded overflow-hidden shadow-lg">
         <Image src={article.heroImage} alt={article.title} fill className="object-cover" />
       </div>
 
       {/* Content */}
-      <div className="space-y-6 text-gray-700 dark:text-gray-300 text-lg">
+      <div className="space-y-4 sm:space-y-6 text-gray-700 dark:text-gray-300 text-base sm:text-lg">
         {article.content.map((para, idx) => (
           <p key={idx}>{para}</p>
         ))}
@@ -105,10 +105,18 @@ export default function ArticlePage() {
 
       {/* Gallery Images */}
       {article.gallery && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-10">
           {article.gallery.map((img, idx) => (
-            <div key={idx} className="relative h-64 rounded overflow-hidden shadow-lg">
-              <Image src={img} alt={`Gallery ${idx}`} fill className="object-cover hover:scale-105 transition-transform duration-500" />
+            <div
+              key={idx}
+              className="relative h-48 sm:h-64 md:h-72 rounded overflow-hidden shadow-lg"
+            >
+              <Image
+                src={img}
+                alt={`Gallery ${idx}`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500"
+              />
             </div>
           ))}
         </div>

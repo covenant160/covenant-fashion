@@ -23,23 +23,24 @@ const featuredProducts: Product[] = [
 
 export default function ProductCarousel() {
   return (
-    <div className="w-full py-10">
+    <div className="w-full py-10 px-4 md:px-6">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
-        navigation={true}           // ✅ enable navigation
-        pagination={{ clickable: true }} // ✅ enable pagination
-        autoplay={{ delay: 3000 }}       // ✅ enable autoplay
+        navigation
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 3000 }}
         loop
         breakpoints={{
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
+          640: { slidesPerView: 2, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 25 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
         }}
       >
         {featuredProducts.map((product) => (
           <SwiperSlide key={product.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center">
-              <div className="relative w-full h-64">
+              <div className="relative w-full h-52 sm:h-64 md:h-64 lg:h-64">
                 <Image
                   src={product.img}
                   alt={product.name}

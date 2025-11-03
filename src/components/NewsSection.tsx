@@ -24,7 +24,7 @@ const articles: ArticleProps[] = [
   {
     id: 1,
     image: "/images/news1.jpg",
-    title: "Exclusive: Fall/Winter 2025 Runway Trends", // New article added
+    title: "Exclusive: Fall/Winter 2025 Runway Trends",
     date: "Oct 31, 2025",
     snippet:
       "We got an exclusive look at the latest runway collections for Fall/Winter 2025. From bold colors to oversized silhouettes, discover the trends that will dominate the fashion scene.",
@@ -65,21 +65,23 @@ export default function NewsSection() {
 
         {/* Featured Article */}
         <div className="relative mb-20 rounded-3xl overflow-hidden shadow-2xl">
-          <Image
-            src={featured.image}
-            alt={featured.title}
-            width={1200}
-            height={600}
-            className="w-full h-96 object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-10">
+          <div className="relative w-full h-0 pb-[50%]"> 
+            {/* Maintain 1200x600 aspect ratio */}
+            <Image
+              src={featured.image}
+              alt={featured.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-6 md:p-10">
             <p className="text-sm text-gray-200 mb-2">{featured.date}</p>
-            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            <h3 className="text-2xl md:text-5xl font-bold text-white mb-4">
               {featured.title}
             </h3>
-            <p className="text-gray-200 max-w-xl">{featured.snippet}</p>
+            <p className="text-gray-200 max-w-full md:max-w-xl">{featured.snippet}</p>
             <Link href={`/news/${featured.id}`}>
-              <button className="mt-4 bg-linear-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+              <button className="mt-4 bg-linear-to-r from-purple-600 to-pink-600 text-white px-4 md:px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
                 Read More
               </button>
             </Link>
@@ -87,37 +89,36 @@ export default function NewsSection() {
         </div>
 
         {/* Articles */}
-        <div className="space-y-20">
+        <div className="space-y-16 md:space-y-20">
           {articles.map((article, index) => (
             <div
               key={article.id}
-              className={`flex flex-col md:flex-row items-center gap-10 ${
+              className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
               {/* Text */}
-              <div className="md:w-1/2">
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                  {article.date}
-                </p>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="md:w-1/2 flex flex-col">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{article.date}</p>
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                   {article.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{article.snippet}</p>
                 <Link href={`/news/${article.id}`}>
-                  <button className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                  <button className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-4 md:px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
                     Read More
                   </button>
                 </Link>
               </div>
 
               {/* Image */}
-              <div className="md:w-1/2 relative h-80 md:h-96 rounded-3xl overflow-hidden shadow-lg">
+              <div className="md:w-1/2 relative w-full h-64 sm:h-72 md:h-96 rounded-3xl overflow-hidden shadow-lg">
                 <Image
                   src={article.image}
                   alt={article.title}
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>
