@@ -1,6 +1,6 @@
 import React from "react";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper"; // ✅ correct import
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,12 +25,11 @@ export default function ProductCarousel() {
   return (
     <div className="w-full py-10">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
+        navigation={true}           // ✅ enable navigation
+        pagination={{ clickable: true }} // ✅ enable pagination
+        autoplay={{ delay: 3000 }}       // ✅ enable autoplay
         loop
         breakpoints={{
           640: { slidesPerView: 2 },
@@ -40,11 +39,15 @@ export default function ProductCarousel() {
         {featuredProducts.map((product) => (
           <SwiperSlide key={product.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center">
-              <img
-                src={product.img}
-                alt={product.name}
-                className="w-full h-64 object-cover"
-              />
+              <div className="relative w-full h-64">
+                <Image
+                  src={product.img}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
               <div className="p-4 text-center">
                 <h3 className="font-bold text-lg">{product.name}</h3>
                 <p className="text-gray-600">{product.price}</p>
